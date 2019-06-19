@@ -8,7 +8,14 @@ try:
         port='5432',
         database='webdb'
     )
+
+    cursor = conn.cursor()
+    cursor.execute('select version()')
+    record = cursor.fetchone()
+
+    print('connected to - ', record)
 except Exception as e:
     print('error: {0}'.format(e))
 finally:
-    conn and conn.close()
+    'conn' in locals() and conn and conn.close()
+    'cursor' in locals() and cursor and cursor.close()
