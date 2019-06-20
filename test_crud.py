@@ -8,12 +8,12 @@ def test_insert():
         conn = psycopg2.connect(**config.db)
 
         cursor = conn.cursor()
-        cursor.execute("insert into pet values('성탄이', '대혁이', 'dog', 'm', '2005-12-31', null)")
-
+        cursor.execute("insert into pet values('성탄이', '대혁이', 'dog', 'm', '2005-12-31', '2006-01-01')")
     except Exception as e:
         print('error : {0}'.format(e))
     finally:
-        cursor and cursor.close() and conn and (conn.commit() or conn.close())
+        cursor and cursor.close()
+        conn and (conn.commit() or conn.close())
 
 
 def test_select():
